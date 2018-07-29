@@ -1,0 +1,106 @@
+<section class="content-header">
+    <h1>
+        Prodcut Category
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a routerLink="/">
+                <i class="fa fa-dashboard"></i> Home Page</a>
+        </li>
+        <li>
+            <a routerLink="/productcategory">Product Category</a>
+        </li>
+        <li class="active">Edit Product Category</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Edit</h3>
+        </div>
+        <form class="form-horizontal" role="form" #productCategoryForm="ngForm" (ngSubmit)="onSubmit()" *ngIf= "productCategory">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Product Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" required id="inputEmail3" placeholder="Name" name="Name" #name = "ngModel" [(ngModel)] = "productCategory.Name">
+                    <div *ngIf="name.errors &&(name.dirty||name.touched)" class="alert alert-danger">
+                        Name is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Title SEO(Alias)</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" required id="inputPassword3" placeholder="Alias" name="Alias" #Alias="ngModel" [(ngModel)] = "productCategory.Alias" >
+                    <div *ngIf = "Alias.errors && (Alias.dirty|| Alias.touched)" class="alert alert-danger">
+                        Alias is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputPassword3" placeholder="Description" name="Description" [(ngModel)] = "productCategory.Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Product Parent</label>
+                <div class="col-sm-8">
+                    <select name="ParentID" class="form-control" [(ngModel)] = "productCategory.ParentID">
+                        <option *ngFor="let parent of parentCategories" [value]="parent.ID">{{parent.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Display Order</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputPassword3" placeholder="Display Order" name="DisplayOrder" [(ngModel)] = "productCategory.DisplayOrder">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Meta Keyword</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputPassword3" placeholder="Meta Keyword" name="MetaKeyword" [(ngModel)] = "productCategory.MetaKeyword">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Meta Description</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="inputPassword3" placeholder="Meta Description" name="MetaDescription" [(ngModel)] = "productCategory.MetaDescription"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="inputPassword3" placeholder="Image" name="Image" [(ngModel)] = "productCategory.Image">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="Status" [(ngModel)] = "productCategory.Status"> Status
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="HomeFlag" [(ngModel)] = "productCategory.HomeFlag"> Home Flag
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <button type="submit" disabled="!productCategoryForm.valid" class="btn btn-primary pull-right">Submit</button>
+                        <button routerLink="/productcategory" type="button" class="btn btn-danger pull-left">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
