@@ -1,3 +1,4 @@
+import { PagerService } from './services/pagiantion.service';
 import { ApiService } from './services/api.service';
 import { AppRouter } from './app.router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -5,6 +6,7 @@ import { NgModule } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import {CKEditorModule} from 'ngx-ckeditor';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -25,9 +27,10 @@ import { ProductCategoryEditComponent } from './product-category/product-categor
     AppRouter,
     CommonModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    CKEditorModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, PagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
