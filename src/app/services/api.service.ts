@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -6,10 +7,14 @@ import 'rxjs/add/operator/map';
 @Injectable()
 
 export class ApiService {
-    constructor(private http: Http) { }
 
+    constructor(private http: Http, private httpClient: HttpClient) {
+    }
     getAll(url: string): Observable<any[]> {
         return this.http.get(url).map((res: Response) => res.json());
+    }
+    getAllByHttpClient(url: string): Observable<any> {
+        return this.httpClient.get(url, { responseType: 'json' });
     }
     getById(url: string, id: number): Observable<any> {
         return this.http.get(url + id).map((res: Response) => res.json());

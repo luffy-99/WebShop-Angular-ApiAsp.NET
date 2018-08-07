@@ -1,3 +1,5 @@
+import { AuthGuard } from './auth/auth.guard';
+import { AuthenticationService } from './services/auth.service';
 import { PagerService } from './services/pagiantion.service';
 import { ApiService } from './services/api.service';
 import { AppRouter } from './app.router';
@@ -7,12 +9,16 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {CKEditorModule} from 'ngx-ckeditor';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { ProductCategoryAddComponent } from './product-category/product-category-add.component';
 import { ProductCategoryEditComponent } from './product-category/product-category-edit.component';
+import { LoginComponent } from './login/login.component';
+import { TemplateComponent } from './template/template.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +26,9 @@ import { ProductCategoryEditComponent } from './product-category/product-categor
     HomeComponent,
     ProductCategoryComponent,
     ProductCategoryAddComponent,
-    ProductCategoryEditComponent
+    ProductCategoryEditComponent,
+    LoginComponent,
+    TemplateComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +36,16 @@ import { ProductCategoryEditComponent } from './product-category/product-categor
     CommonModule,
     FormsModule,
     HttpModule,
-    CKEditorModule
+    CKEditorModule,
+    HttpClientModule
   ],
-  providers: [ApiService, PagerService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    ApiService, PagerService, AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

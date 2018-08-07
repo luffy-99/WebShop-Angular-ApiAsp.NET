@@ -1,5 +1,5 @@
-import { PagerService } from './../services/pagiantion.service';
-import { ApiService } from './../services/api.service';
+import { PagerService } from '../services/pagiantion.service';
+import { ApiService } from '../services/api.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-product-category',
@@ -9,7 +9,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class ProductCategoryComponent implements OnInit {
 
   constructor(private apiService: ApiService, private pagerService: PagerService) { }
-  public listProductCategories: any[];
+  public listProductCategories: any;
+  public listProductCategory: Object;
   private AllChecked = false;
   private keyword: string;
   private pager: any = {};
@@ -18,7 +19,7 @@ export class ProductCategoryComponent implements OnInit {
     this.LoadData();
   }
   LoadData() {
-    this.apiService.getAll('/api/productcategory/GetAllParent').subscribe((resJson) => {
+    this.apiService.getAllByHttpClient('/api/productcategory/GetAllParent').subscribe((resJson) => {
       this.listProductCategories = resJson;
       console.log(this.listProductCategories);
       this.setPage(1);

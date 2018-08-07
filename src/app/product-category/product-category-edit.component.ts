@@ -1,4 +1,4 @@
-import { ApiService } from './../services/api.service';
+import { ApiService } from '../services/api.service';
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {Subscription} from 'rxjs';
