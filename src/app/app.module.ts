@@ -1,4 +1,4 @@
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard } from './admin/auth/auth.guard';
 import { AuthenticationService } from './services/auth.service';
 import { PagerService } from './services/pagiantion.service';
 import { ApiService } from './services/api.service';
@@ -12,13 +12,14 @@ import {CKEditorModule} from 'ngx-ckeditor';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { ProductCategoryComponent } from './product-category/product-category.component';
-import { ProductCategoryAddComponent } from './product-category/product-category-add.component';
-import { ProductCategoryEditComponent } from './product-category/product-category-edit.component';
-import { LoginComponent } from './login/login.component';
-import { TemplateComponent } from './template/template.component';
-import { AuthInterceptor } from './auth/auth.interceptor';
+import { HomeComponent } from './admin/home/home.component';
+import { ProductCategoryComponent } from './admin/product-category/product-category.component';
+import { ProductCategoryAddComponent } from './admin/product-category/product-category-add.component';
+import { ProductCategoryEditComponent } from './admin/product-category/product-category-edit.component';
+import { LoginComponent } from './admin/login/login.component';
+import { TemplateComponent } from './admin/template/template.component';
+import { AuthInterceptor } from './admin/auth/auth.interceptor';
+import { TemplateclientComponent } from './client/templateclient/templateclient.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ProductCategoryAddComponent,
     ProductCategoryEditComponent,
     LoginComponent,
-    TemplateComponent
+    TemplateComponent,
+    TemplateclientComponent
   ],
   imports: [
     BrowserModule,
